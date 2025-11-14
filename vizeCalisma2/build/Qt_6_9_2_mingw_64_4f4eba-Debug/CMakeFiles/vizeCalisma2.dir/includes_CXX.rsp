@@ -1,0 +1,1 @@
+-I"D:/QT Proje/vizeCalisma2/build/Qt_6_9_2_mingw_64_4f4eba-Debug/vizeCalisma2_autogen/include" -isystem D:/QT1/6.9.2/mingw_64/include/QtCore -isystem D:/QT1/6.9.2/mingw_64/include -isystem "D:/QT1/6.9.2/mingw_64/mkspecs/win32-g++" -isystem D:/QT1/6.9.2/mingw_64/include/QtWidgets -isystem D:/QT1/6.9.2/mingw_64/include/QtGui

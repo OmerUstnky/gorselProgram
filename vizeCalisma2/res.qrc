@@ -1,0 +1,9 @@
+<RCC>
+    <qresource prefix="/res">
+        <file>image/engel.webp</file>
+        <file>image/top.webp</file>
+        <file>image/topp.jpg</file>
+        <file>image/ball.png</file>
+        <file>image/block.jpeg</file>
+    </qresource>
+</RCC>
