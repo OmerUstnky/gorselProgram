@@ -1,0 +1,3 @@
+D:\QT1\Tools\CMake_64\bin\cmake.exe -E rm -f CMakeFiles\vize1.dir/objects.a
+D:\QT1\Tools\mingw1310_64\bin\ar.exe qc CMakeFiles\vize1.dir/objects.a @CMakeFiles\vize1.dir\objects1.rsp
+D:\QT1\Tools\mingw1310_64\bin\g++.exe -DQT_QML_DEBUG -g -mwindows -Wl,--whole-archive CMakeFiles\vize1.dir/objects.a -Wl,--no-whole-archive -o vize1.exe -Wl,--out-implib,libvize1.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles\vize1.dir\linkLibs.rsp
