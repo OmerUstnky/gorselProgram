@@ -108,35 +108,78 @@ QTimer	Nesneleri otomatik hareket ettirme
 
 
 
-
-
-
 📝 Qt Sınav Notu – Tüm Örnekler Üzerinden
-Metod / Özellik	Nerede Kullanıldı	Ne İşe Yarar	Örnek
-setScaledContents(true)	QLabel/etiket/plane/balon	Pixmap boyutunu widget boyutuna uyarlar	label->setScaledContents(true);
-setFrameShape(QFrame::Box)	QLabel/etiket/plane/balon	Widget’in çerçeve şeklini belirler	label->setFrameShape(QFrame::Box);
-show()	Tüm QLabel’ler	Widget’in görünmesini sağlar	label->show();
-setPixmap(QPixmap(...))	QLabel/etiket/plane/balon	Widget üzerinde resim gösterir veya değiştirir	label->setPixmap(QPixmap(":/img/car.png"));
-geometry() / setGeometry(x,y,w,h)	Tüm hareketli widget’lar	Widget’in konum ve boyutunu alır veya ayarlar	ucak->setGeometry(konumX, konumY, 120, 80);
-x(), y(), width(), height()	Tüm widget’lar	Konum ve boyut bilgisi alır	if(ucak->x() + ucak->width() <= this->width())
-QVector	Balon, etiket dizileri	Widget’ları dizi / vector ile saklamak	QVector<baloon*> balonlar;
-QRandomGenerator::global()->bounded(n)	Rastgele resim seçimi	0..n-1 arası rastgele sayı üretir	int r = QRandomGenerator::global()->bounded(5);
-mousePressEvent(QMouseEvent*)	Etiket sürükleme	Mouse tıklamasını yakalar	ilkKonum = ev->pos();
-mouseMoveEvent(QMouseEvent*)	Etiket sürükleme / taşınma	Mouse ile sürükleme olaylarını yakalar	setGeometry(ev->pos().x()-ilkKonum.x()+x(), ...)
-QDrag	Drag & drop	Widget sürükleme işlemini başlatır	QDrag *drag = new QDrag(this); drag->exec(Qt::MoveAction);
-QMimeData	Drag & drop	Sürüklenen veri (resim/dosya) taşır	QMimeData *data = new QMimeData(); data->setImageData(pixmap().toImage());
-dragEnterEvent(QDragEnterEvent*)	Drag & drop	Drop event kabulü	event->accept();
-dropEvent(QDropEvent*)	Drag & drop	Sürüklenen veri bırakıldığında çalışır	if (ucak->geometry().intersects(balon->geometry())) { ... }
-intersects()	Çarpışma kontrolü	İki widget çarpıştı mı kontrol eder	if(ucak->geometry().intersects(balonlar[i]->geometry()))
-lineEdit->text()	Text giriş	Kullanıcıdan veri almak	ui->lineEdit->text().toInt();
-QTextEdit->setText()/toPlainText()	Çok satırlı metin	TextEdit’e yazı yazdırmak / almak	ui->textEdit->setText(okunan);
-QFileDialog::getOpenFileName()	Dosya açma	Kullanıcıdan dosya seçmek	QString yol = QFileDialog::getOpenFileName(this, ...);
-QFileDialog::getSaveFileName()	Farklı kaydet	Kullanıcıdan kaydetme yolu almak	QString yol = QFileDialog::getSaveFileName(this, ...);
-QFile + QTextStream	Dosya işlemleri	Dosya aç, oku, yaz	QFile dosya(yol); dosya.open(QFile::ReadOnly); QTextStream ok(&dosya); ok.readAll();
-redo() / undo()	TextEdit	Geri / ileri işlemi	ui->textEdit->undo(); ui->textEdit->redo();
-QSlider->value()	Slider ile hareket	Hareket veya değer artırma	x += ui->horizontalSlider->value();
-QPushButton->clicked()	Buton tıklaması	İşlem tetikleme	on_pushButton_clicked()
-QPushButton->pressed() / released()	Buton basılma	Buton basıldığında boyut değiştirme	setGeometry(x-15, y-15, 60, 60);
+📌 QLabel / QPixmap İşlemleri
+Metod	Kullanıldığı Yer	Açıklama	Örnek
+setScaledContents(true)	QLabel	Pixmap’in label boyutuna uyum sağlamasını sağlar	label->setScaledContents(true);
+setFrameShape(QFrame::Box)	QLabel	Widget’a çerçeve ekler	label->setFrameShape(QFrame::Box);
+setPixmap(QPixmap(...))	QLabel	Label üzerine resim eklemek/değiştirmek	label->setPixmap(QPixmap(":/img/car.png"));
+show()	Tüm widget’lar	Widget’i görünür yapar	label->show();
+📌 Konum – Geometri İşlemleri
+Metod	Açıklama	Örnek
+geometry()	Konum + boyut bilgisi alır	label->geometry()
+setGeometry(x,y,w,h)	Widget konum/boyut ayarı	ucak->setGeometry(x, y, 120, 80);
+x(), y(), width(), height()	Konum ve boyut verilerini döner	if (ucak->x() + ucak->width() <= this->width())
+📌 QVector – Liste Kullanımı
+Amaç	Açıklama	Örnek
+Widget’ları dizide saklamak	Balon, araba, düşman gibi çoklu obje yönetimi	QVector<QLabel*> balonlar;
+📌 Rastgele Sayı (Random)
+Metod	Açıklama	Örnek
+QRandomGenerator::global()->bounded(n)	0..n-1 arası random sayı üretir	int r = QRandomGenerator::global()->bounded(5);
+🖱️ Mouse Event’ler – Sürükleme / Taşıma
+Event	Açıklama	Örnek
+mousePressEvent(QMouseEvent *ev)	Tıklama başlangıcı	ilkKonum = ev->pos();
+mouseMoveEvent(QMouseEvent *ev)	Sürükleme işlemi	setGeometry(ev->pos().x()-ilkKonum.x()+x(), ...);
+🎯 Drag & Drop İşlemleri
+Parça	Açıklama	Örnek
+QDrag	Sürükleme başlatır	QDrag *drag = new QDrag(this);
+QMimeData	Sürüklenen veriyi taşır	mime->setImageData(pixmap().toImage());
+dragEnterEvent	Drop kabulü	event->accept();
+dropEvent	Sürüklenen veri bırakıldığında çalışır	...
+🔥 Çarpışma Kontrolü
+Metod	Açıklama	Örnek
+intersects()	İki widget çarpıştı mı?	if (ucak->geometry().intersects(balon->geometry()))
+⌨️ LineEdit – TextEdit Kullanımı
+Metod	Açıklama	Örnek
+lineEdit->text()	Kullanıcıdan tek satırlı text almak	ui->lineEdit->text().toInt();
+textEdit->setText()	TextEdit’e yazı yazdırmak	ui->textEdit->setText(veri);
+textEdit->toPlainText()	Metni almak	QString x = ui->textEdit->toPlainText();
+undo() / redo()	Geri al / ileri al	ui->textEdit->undo();
+📂 Dosya Aç / Kaydet – QFileDialog
+Metod	Açıklama	Örnek
+getOpenFileName()	Dosya seçme	QString yol = QFileDialog::getOpenFileName(this);
+getSaveFileName()	Yeni dosya kaydetme	QString yol = QFileDialog::getSaveFileName(this);
+➕ QFile + QTextStream
+Amaç	Örnek Kod
+Dosya okuma/yazma	cpp QFile f(yol); f.open(QFile::ReadOnly); QTextStream ok(&f); QString veri = ok.readAll();
+🎚️ Slider Kullanımı
+Metod	Açıklama	Örnek
+slider->value()	Hareket / hız / konum değeri almak	x += ui->horizontalSlider->value();
+🔘 QPushButton
+Event	Açıklama	Örnek
+clicked()	Tıklama olayı	on_pushButton_clicked();
+pressed() / released()	Basılınca şekil değiştirmek	setGeometry(x-15, y-15, 60, 60);
+✔️ Kullanışlı Bir Özet (Kısa Liste)
+
+QLabel görüntü: setPixmap, setScaledContents
+
+Geometri: setGeometry, x()/y(), width()/height()
+
+Çarpışma: intersects()
+
+Random: bounded()
+
+Drag-drop: QDrag, QMimeData
+
+Dosya aç/kaydet: QFileDialog
+
+Mouse drag: mousePressEvent, mouseMoveEvent
+
+TextEdit: setText, toPlainText, undo
+
+Slider: value()
+
+Buton: clicked, pressed, released
 
 1️⃣ QMessageBox
 QMessageBox, kullanıcıya uyarı, bilgi, soru veya hata mesajı göstermek için kullanılır.
@@ -306,10 +349,3 @@ void MainWindow::on_horizontalSlider_valueChanged(int value)
     if (newX + mySepet->width() > width()) newX = width() - mySepet->width();
     mySepet->move(newX, mySepet->y());
 }
-
-
-
-
-
-
-
