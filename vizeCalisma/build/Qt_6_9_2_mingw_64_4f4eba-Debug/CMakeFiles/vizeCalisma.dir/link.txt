@@ -1,0 +1,3 @@
+D:\QT1\Tools\CMake_64\bin\cmake.exe -E rm -f CMakeFiles\vizeCalisma.dir/objects.a
+D:\QT1\Tools\mingw1310_64\bin\ar.exe qc CMakeFiles\vizeCalisma.dir/objects.a @CMakeFiles\vizeCalisma.dir\objects1.rsp
+D:\QT1\Tools\mingw1310_64\bin\g++.exe -DQT_QML_DEBUG -g -mwindows -Wl,--whole-archive CMakeFiles\vizeCalisma.dir/objects.a -Wl,--no-whole-archive -o vizeCalisma.exe -Wl,--out-implib,libvizeCalisma.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles\vizeCalisma.dir\linkLibs.rsp

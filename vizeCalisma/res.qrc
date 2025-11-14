@@ -1,0 +1,7 @@
+<RCC>
+    <qresource prefix="/img">
+        <file>image/balon.jpeg</file>
+        <file>image/ucakDik.jpeg</file>
+        <file>image/ucakYatay.png</file>
+    </qresource>
+</RCC>
